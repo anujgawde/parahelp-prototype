@@ -88,6 +88,10 @@ body {
   color: var(--color-text-primary);
 }
 
+button, [role="button"] {
+  cursor: pointer;
+}
+
 /* Scrollbar refinement */
 ::-webkit-scrollbar {
   width: 6px;
