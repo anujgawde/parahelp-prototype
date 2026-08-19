@@ -376,7 +376,7 @@ function ActionCard({
   return (
     <div
       data-tour={tourTarget}
-      className={`group rounded-lg bg-surface-secondary transition-all hover:bg-surface-tertiary ${
+      className={`rounded-lg bg-surface-secondary transition-all hover:bg-surface-tertiary ${
         state === "exiting"
           ? "opacity-0 translate-x-6 scale-[0.98]"
           : skipAnimation
@@ -388,7 +388,7 @@ function ActionCard({
         transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
-      <div className="flex items-start gap-3.5 px-5 py-3.5">
+      <div className="flex items-start gap-3.5 px-5 pt-3.5 pb-3">
         {/* Type indicator */}
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-surface-tertiary mt-0.5">
           <div className={`h-2.5 w-2.5 rounded-full ${typeIndicator}`} />
@@ -403,39 +403,8 @@ function ActionCard({
             {action.detail}
           </p>
           <p className="mt-1 text-[12px] text-text-tertiary">{action.source}</p>
-        </div>
-
-        {/* Dismiss */}
-        <button
-          onClick={() => {
-            if (isTourTarget) return;
-            setState("exiting");
-            setTimeout(() => {
-              setState("done");
-              onDismiss(action.id, "dismissed");
-            }, 300);
-          }}
-          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-text-tertiary transition-all hover:bg-surface-tertiary hover:text-text-primary opacity-0 group-hover:opacity-100 ${isTourTarget ? "hidden!" : ""}`}
-          title="Dismiss"
-        >
-          <svg
-            className="h-3 w-3"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          >
-            <line x1="4" y1="4" x2="12" y2="12" />
-            <line x1="12" y1="4" x2="4" y2="12" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Action buttons - expand on hover */}
-      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-200">
-        <div className="overflow-hidden">
-          <div className="flex gap-2 px-5 pb-3 pt-1">
+          {/* Action buttons */}
+          <div className="flex gap-2 pt-2">
             <button
               onClick={handlePrimary}
               className="rounded-md bg-surface-inverse px-3.5 py-1.5 text-[12px] font-medium text-text-inverse transition-colors hover:bg-surface-inverse/90"
@@ -452,6 +421,32 @@ function ActionCard({
             )}
           </div>
         </div>
+
+        {/* Dismiss */}
+        <button
+          onClick={() => {
+            if (isTourTarget) return;
+            setState("exiting");
+            setTimeout(() => {
+              setState("done");
+              onDismiss(action.id, "dismissed");
+            }, 300);
+          }}
+          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-text-tertiary transition-all hover:bg-surface-tertiary hover:text-text-primary ${isTourTarget ? "hidden!" : ""}`}
+          title="Dismiss"
+        >
+          <svg
+            className="h-3 w-3"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          >
+            <line x1="4" y1="4" x2="12" y2="12" />
+            <line x1="12" y1="4" x2="4" y2="12" />
+          </svg>
+        </button>
       </div>
 
       {/* Inline test runner */}
